@@ -1,0 +1,1405 @@
+///// when i click button count value is one but console it should be displayed  0  because state updates is asynchronous
+and u will not get count value immediately and on next render cycle we will get state value
+
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [count,setCount]=useState(0)
+
+  return (
+    <div>
+     <p>count : {count}</p>
+     <button onClick={()=>{
+       setCount(count+1)
+       console.log(count)
+     }}>click</button>
+    </div>
+  );
+} -->
+
+/////// when i click button count value is 1 but console it should be displayed  0  because state updates is asynchronous=> and we have
+ a state closure because you will not get updated value in second setCount
+
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [count,setCount]=useState(0)
+
+  return (
+    <div>
+     <p>count : {count}</p>
+     <button onClick={()=>{
+       setCount(count+1)
+       setCount(count+1)
+       setCount(count+1)
+
+
+       console.log(count)
+     }}>click</button>
+    </div>
+  );
+} -->
+
+//  when i click button count value is 2  but console displayed value is 0 because we write as functional format
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [count,setCount]=useState(0)
+
+  return (
+    <div>
+     <p>count : {count}</p>
+     <button onClick={()=>{
+       setCount(count=>count+1)
+       setCount(count=>count+1)
+
+
+       console.log(count)
+     }}>click</button>
+    </div>
+  );
+}
+ -->
+//  click the button using setInterval
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [count,setCount]=useState(0)
+
+  const clickHandler=()=>{
+let id=setInterval(()=>{
+  setCount(count=>count+1);
+  console.log(count)
+},[1000])
+  }
+
+  return (
+    <div>
+     <p>count : {count}</p>
+     <button onClick={clickHandler}>click</button>
+    </div>
+  );
+}
+ -->
+
+
+
+/////////////////////////////////////SHOW LIST OF TEMS///////////////////////////////////////////////////////////////////////////////////////////
+ <!-- import React from "react";
+import "./style.css";
+
+export default function App() {
+  let arr=[1,2,3,4,5]
+  return (
+    <div>
+    {
+        arr.map((item,index)=>{
+          if (item >0)
+          return <div key={index}>
+            {item *2}</div>
+            return null;
+        })
+    }
+    </div>
+  );
+} -->
+
+
+
+// WHEN I CLICK BTN IT WANTS TO SHOW OBJ DETAILS AND AGIN IF I CLICK MEANS HIDE ///////////////////////////////////
+
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {r
+
+  })
+const [showDetails,setShowDetails]=useState(false)
+  const clickHandler=()=>{
+        setShowDetails(!showDetails)
+  }
+  return (
+    <div>
+    <button onClick={clickHandler}>click</button>
+    {
+      showDetails && <div>
+           <h4>{obj.name}</h4>
+           <h4>{obj.lName}</h4>
+           <h4>{obj.address.street}</h4>
+           <h4>{obj.address.district}</h4>
+
+        </div>
+    }
+    </div>
+  );
+} -->
+  when i click btn it shuld change content of district
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [obj,setObj]=useState({
+    name:'Manikanta',
+    lName:'Ayyala',
+    address:{
+      street:'Rayachoty',
+      district:'kadapa'
+    }
+
+  })
+  const clickHandler=()=>{`
+    setObj({...obj,address:{...obj.address,district:'Annamayya'}})
+  }
+  return (
+    <div>
+      <h4>{obj.name}</h4>
+           <h4>{obj.lName}</h4>
+           <h4>{obj.address.street}</h4>
+           <h4>{obj.address.district}</h4>
+           <button onClick={clickHandler}>click</button>
+    </div>
+  );
+} -->
+
+
+// WHEN I CLICK BTN IT WILL SHOW TABLE DATA ///////////////////////////////////////////////////////////////////////////////////
+<!-- import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+  const [isTable,setIsTable]=useState(false);
+  const [table,setTable]=useState([])
+
+  const clickHandler=()=>{
+    if(isTable){
+      setTable([...table,table.length+1])
+    }else {
+      setIsTable(true)
+    }
+    /////or////
+    setIsTable(true)
+    setTable([...table,table.length+1])
+  }
+  return (
+    <div>
+     <button onClick={clickHandler}>click</button>
+     {
+       isTable && <table border={2}>
+           <thead>
+             <tr>
+               <td>TableData</td>
+               </tr>
+             </thead>
+             <tbody>
+               {
+                 table.map((row,index)=>{
+                        return <tr key={index}>
+                                  <td>{row}</td>
+                        </tr>
+                 })
+               }
+               </tbody>
+         </table>
+     }
+    </div>
+  );
+} -->
+
+///////////////   NESTED ARRAY OBJECTS TAKING PROPERTIES  ////////////////////
+<!-- import React from "react";import "./styles.css";
+
+  >=>(?.) the optional chaining operator (?.). It is used to prevent errors  when  we are trying to access null or undefined properties of array or object
+
+import "./styles.css";
+
+const Sources = [
+  {
+    name: "Microsoft",
+    description: "Software company",
+    secondary: [
+      {
+        name: "phones",
+        description: "windows",
+        tertiary: [
+          {
+            name: "white"
+          },
+          {
+            name: "black"
+          }
+        ]
+      },
+      {
+        name: "laptops",
+        tertiary: [
+          {
+            name: "blue",
+            description: "top-end"
+          },
+          {
+            name: "grey",
+            description: "available after 2021"
+          }
+        ]
+      }
+    ]
+  }
+];
+
+export default function App() {
+  return (
+    <div className="App">
+      { Sources.map((sources) => {
+      return <>
+      <p>{sources.name}</p>
+      <dl>
+      {
+        Sources[0]?.secondary.map((item,index) => {
+          return <div key={index}>
+            <dt>{item.name}</dt>
+            {
+              item?.tertiary?.map( color => {
+                return <dd>{color.name}</dd>
+              })
+            }
+          </div>
+        })
+      }
+      </dl>
+      </>
+      })}
+    </div>
+  );
+}
+
+  
+
+
+
+/////FETCH DATA FROM API INSIDE A MEALS OBJECT INSTEAD DIRECT OBJECT///////////////////////////////////////
+<!-- 
+import React,{useState,useEffect} from "react";
+import "./style.css";
+const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?f=a";
+
+export default function App() {
+
+  const [meal,setMeal]=useState([])
+
+  useEffect(()=>{
+    fetch(API_URL)
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+      if(data.meals){
+        setMeal(data.meals)
+      }
+    })
+
+    /////ONE ARRAY OBJECT MEANS .then()
+  },[])
+  return (
+    <div>
+     {
+       meal.map((item,index)=>{
+         return <div key={index}>
+              <div className='imgContainer'>
+                <img src={item?.strMealThumb}/>
+                </div>
+                <div>
+                  <h4>{item?.strCategory}</h4>
+                  
+                  
+                  <p>{item.strInstructions.slice(0,120)}</p>
+                  
+                  </div>
+                  {
+                    item?.strTags?.split(",").map(tag=>{
+                      return <ul>
+                        <li>{tag}</li
+                        ></ul>
+                    })
+                  }
+                  <div>
+                    </div>
+           </div>
+       })
+     }
+    </div>
+  );
+} -->
+
+
+////// USING CONTEXT WHEN I CLICK BTN IT SHOULD ENTR DATE V///////////////////////////////////////
+
+<!-- import React,{createContext,useState,useContext} from 'react';
+
+const Context=createContext([])
+
+const Provider=({children})=>{
+
+  const [text,setText]=useState('');
+  return <Context.Provider value={[text,setText]}>
+    {children}
+    </Context.Provider>
+}
+
+
+const UserInfo=()=>{
+  const [text,setText]=useContext(Context)
+
+  
+const clickHandler=()=>{
+setText(presentDate())
+}
+
+
+const presentDate=()=>{
+  return new Date().toLocaleString()
+}
+
+
+  return (
+    <div>
+      <textarea value={text}></textarea>
+    <button onClick={clickHandler}>click Me</button>
+  
+      </div>
+  )
+}
+
+
+
+
+const App=()=>{
+return (
+  <div>
+  <Provider>
+    <UserInfo/>
+    </Provider>
+    </div>
+)
+}
+export default App -->
+
+
+/////////////////////////////////////////////////Hoc OBJECT........//////////////////////////////////////////////////////////////////////
+<!-- import React from "react";
+import "./style.css";
+
+
+
+const Hoc=(Componenet)=>{
+  const sampleObject={
+    name:'manikant',
+    role:'Developer',
+    company:'Accentire'
+  }
+  return ()=> <Componenet value={sampleObject}/>
+}
+
+
+const HocCount=({value})=>{
+
+  return(
+    <div>
+      <h2>{value.name}</h2>
+      <h2>{value.role}</h2>
+    </div>
+  )
+
+}
+
+const Mani=Hoc(HocCount)
+
+export default function App() {
+  return (
+    <div>
+ <Mani/>
+    </div>
+  );
+} -->
+
+
+////////////// like debouncing we have to use Usecallback in  input searchbar and type there any thing//////
+
+
+<!-- <body> -->
+
+    <!-- <input type="text" placeholder="Enter text" id='inputField' />
+    
+    
+    <script>
+      // Function to create a debounced version of a callback function
+      function dbFunc(callback) {
+        let time = null;
+        return () => {
+          
+            clearTimeout(time);
+          
+          time = setTimeout(callback, 2000);
+        }
+      }
+    
+    const inputField=document.getElementById('inputField')
+    const debouncedfn=dbFunc(()=>console.log("hello"))
+    inputField.addEventListener('input',debouncedfn)
+    </script>
+    
+    </body> -->
+
+
+
+
+
+<!-- 
+    const str = "MyNameIsJohn";
+// const st=str.replace(/([a-z])([A-Z])/g,'$1 $2')
+// console.log(st)
+
+function getSpace(str){
+let output=" ";
+for(let i=0;i<str.length;i++){
+  if(str[i]===str[i].toUpperCase() && i > 0){
+    output+= "  "+str[i]
+  }else {
+    output+=str[i]
+  }
+}
+return output
+}
+console.log(getSpace(str)) -->
+
+
+
+
+<!--///////////////////////////////////////   PROPS DRILLING     /////////////////////////////////// -->
+
+
+<!-- import React from 'react';
+
+
+const Parent=({data})=>{
+  return (
+    <div>
+      <h4>this is Parent Componenet</h4>
+      <Child data={data}/>
+      </div>
+  )
+}
+
+const Child=({data})=>{
+  return(
+    <div>
+
+      <h4>This is Child component</h4>
+      <p>DATA RECIEBED FROM ANCESTORS :{data}</p>
+      </div>
+  )
+}
+
+
+const App=()=>{
+
+  const data="This is data sending to child components"
+   return (
+     <div>
+        <h3>This is App component</h3>
+        <Parent data={data}/>
+
+       </div>
+   )
+}
+export default App -->
+
+
+/////////////////////////////////////////////////// USEMEMO /////////////////////////////////\
+<!-- import React, { useState, useMemo } from 'react';
+
+const SumComponent = ({ n }) => {
+  // Function to compute the sum of the first n numbers
+  const computeSum = (n) => {
+    console.log('Computing sum...');
+    let sum = 0;
+    for (let i = 1; i <= n; i++) {
+      sum += i;
+    }
+    return sum;
+  };
+
+  // Memoize the result of computeSum
+  const memoizedSum = useMemo(() => computeSum(n), [n]);
+
+  return (
+    <div>
+      <h2>Sum of first {n} numbers:</h2>
+      <p>{memoizedSum}</p>
+    </div>
+  );
+};
+
+const App = () => {
+  const [count, setCount] = useState(1);
+
+  return (
+    <div>
+      <h1>UseMemo Example</h1>
+      <input
+        type="number"
+        value={count}
+        onChange={(e) => setCount(parseInt(e.target.value))}
+      />
+      <SumComponent n={count} />
+    </div>
+  );
+};
+
+export default App; -->
+
+
+////////////////////////////////////////////////// CHILDREN PROPS ////////////////////////////////////////////////////////////////////////////////
+<!-- import React from "react";
+import "./style.css"; -->
+
+
+<!-- const Child=({children})=>{
+  return (
+    <div>
+      {children}
+    </div>
+  )
+}
+export default function App() {
+  return (
+    <div>
+    <Child>This is Children props</Child>
+    </div>
+  );
+} -->
+
+
+
+
+///////////////////////////////////////// frorms using  useREF/////////////////////////////////
+<!-- import React,{useRef} from "react";
+import "./style.css";
+
+export default function App() {
+
+  const emailRef=useRef(null);
+  const passwordRef=useRef(null)
+
+const submitHandler=(e)=>{
+  e.preventDefault();
+ const email= emailRef.current.value;
+ const password= passwordRef.current.value;
+
+ console.log("form data submitted ", {email,password});
+ emailRef.current.value=""
+ passwordRef.current.value=""
+
+}
+
+  return (
+    <div>
+     <form onSubmit={submitHandler}>
+       <div>
+         <label htmlFor="email">Email : </label>
+         <input type="email" id="email" placeholder="Enter email" ref={emailRef}
+         />
+         </div><br/>
+         <div>
+         <label htmlFor="password">Password : </label>
+         <input type="password" placeholder="Enter password" id="password" ref={passwordRef}
+         />
+         </div>
+         <button>submit</button>
+       </form>
+    </div>
+  );
+
+  
+If you don't call e.preventDefault() in the form submission handler, the browser will perform its default action of submitting the form, which typically results in a page reload or navigation to another page.
+} -->
+
+/////////////////////////  FORWARDREF,USEIMPERATIVEHANDLE////////////////////////
+<!-- 
+import React,{useRef,forwardRef,useImperativeHandle} from "react";
+import "./style.css";
+
+
+const ChildComp=forwardRef((prop,ref)=>{
+
+   const childRef=useRef(null)
+
+useImperativeHandle(ref,()=>({
+  focus:()=>{
+    childRef.current.focus()
+  },
+  getValue:()=>{
+    return childRef.current.value
+  },
+  clearValue:()=>{
+    return childRef.current.value=""
+  }
+}))
+
+  return(
+    <div>
+      <form >
+         <input type="text" ref={childRef}/>
+      </form>
+      </div>
+  )
+})
+
+
+
+
+export default function App() {
+   const inputRef=useRef(null)
+
+
+
+   const clickHandler=()=>{
+     inputRef.current.focus()
+    const refers= inputRef.current.getValue()
+     inputRef.current.clearValue()
+
+     console.log("form data submitted",refers)
+   }
+
+  
+  return (
+    <div>
+    <ChildComp ref={inputRef}/>
+    <button onClick={clickHandler}>Click</button>
+    </div>
+  ); 
+} -->
+
+
+
+
+
+
+
+
+////////////////////////////////////// WITHOUT USING THIRD VARIABLE SWAP AND WITH USING THIRD VARIABLE SWAP/////////////////////////
+<!-- 
+var x="hello";                        var x="hello";
+var y="world";                         var y="world";
+[x,y] =[y,x];                            let  temp=x;
+console.log("x",x);                       x=y;
+console.log("y",y);                     y=temp;
+                                          console.log(x,y)
+ -->
+
+
+  ////////////////////////// Custom Hooks how to create  //////////////////////////////////////////////////////////////////////////////////
+  =>create a function using word "use".
+  =>Inside a function we can use Inbuild hooks  or custom hooks.
+  =>the fn can accepts parameters to customize to customize its behaviour
+   =>the fn should return any statefull values that u want to xpose to other component using hook 
+  <!-- import React from "react";
+import "./style.css";
+
+
+function useCounter(){
+  const [count,setCount]=React.useState(0)
+
+  const increment=()=>{
+    setCount(count+1)
+  }
+  const Decrement=()=>{
+    setCount(count-1)
+  }
+  return {
+    count,increment,Decrement
+
+  }
+}
+
+
+
+export default function App() {
+  const {count,increment,Decrement}=useCounter()
+  return (
+    <div>
+     <h3>count : {count}</h3>
+     <button onClick={increment}>Increment</button>
+     <button onClick={Decrement}>Decrement</button>
+
+    </div>
+  );
+} -->
+
+
+
+/////////////////////////////////////////////////////////   REDUX STORE ////////////////////////////////////////
+
+
+<!-- import React from "react";
+import "./style.css";
+import {combineReducers} from "redux"
+import {legacy_createStore as createStore} from "redux";
+import {Provider} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
+const Increment=(number)=>{
+  return{
+    type:"INCREMENT",
+    payload:number
+  }
+}
+const Decrement=(number)=>{
+  return{
+    type:"DECREMENT",
+    payload:number
+  }
+}
+
+const Reducer=(state=0,{type,payload})=>{
+   switch(type){
+     case "INCREMENT":
+     return state+payload;
+     case "DECREMENT" :
+     return state-payload;
+     default  : return state;
+       }
+}
+
+const allReducers=combineReducers({counter:Reducer})
+
+const store= createStore(allReducers)
+
+
+
+
+const MyCompo=()=>{
+    const count=useSelector(state=>state.counter)
+    const dispatch=useDispatch()
+
+    return (
+      <div>
+        <h2>count:{count}</h2>
+        <button onClick={()=>dispatch(Increment(1))}>Increment</button>
+        <button onClick={()=>dispatch(Decrement(1))}>Increment</button>
+
+        </div>
+    )
+}
+
+export default function App() {
+  return (
+    <div>
+    <Provider store={store}>
+      <MyCompo/>
+
+      </Provider>
+    </div>
+  );
+} -->
+
+
+//////////////select and option for diffrent countries'///////////////////////////
+<!-- 
+App.jsx
+
+import React from "react";
+import "./style.css";
+import CountryList from "./CountryList";
+import Search from "./Search";
+import {Countries} from "./Countries"
+export default function App() {
+
+
+const [filterCountries,setFilterCountries]=React.useState(Countries)
+
+const handleSearch=(value)=>{
+  const filter=Countries.filter((country)=>country.toLowerCase().includes(value.toLowerCase()))
+  setFilterCountries(filter)
+}
+
+  return (
+    <div>
+      <section>
+              <Search handleSearch={handleSearch}/>
+              <CountryList Countries={filterCountries}/>
+  </section>
+    </div>
+  );
+}
+
+Search .jsx
+import React from "react";
+import './style.css'
+
+export default function Search({handleSearch}){
+
+  const changeHandler=({target:{value}})=>{
+    handleSearch(value)
+  }
+  return (
+    <div>
+      <input type="text" placeholder="Enter Country" onChange={changeHandler}/>
+      </div>
+  )
+}
+
+CountryList.jsx  
+
+import React from "react";
+// import {Countries} from "./Countries"
+import './style.css'
+
+export default function CountryList({Countries}){
+
+  return (
+    
+     <select>
+       
+    {
+      Countries.map((country,index)=>{
+        return <option key={index}>{country}</option>
+      })
+    }
+
+      
+       </select>
+    
+  )
+} -->
+
+
+
+//////////////////////////////////////////////////////////USING CUSTOM HOOK CALLING API //////////////////////////////////////////////////////////////////////////////
+<!-- import React,{useState,useEffect} from 'react';
+
+export default function useFetch(url){
+  const [data,setData]=useState(null);
+  const [loading,setLoading]=useState(true)
+  const [error,setError]=useState(null)
+
+
+const fetchedData= async()=>{
+  try{
+    const response=await fetch(url)
+    const result=await response.json()
+    console.log(result)
+    setData(result)
+  }catch(error){
+    setError(error)
+  }finally{
+    setLoading(false)
+  }
+}
+useEffect(()=>{
+  fetchedData()
+},[url])
+
+
+
+  return {data,loading,error}
+}
+
+
+
+import React, { useState, useEffect } from "react";
+import "./style.css";
+const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+import useFetch from './useFetch';
+export default function App() {
+
+ const {data,loading,error}=useFetch(API_URL)
+ 
+
+
+  if (loading) {
+    return <div>Data Loading ......</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  return (
+    <div>
+      {
+        data.map((item, index) => (
+          <div key={index}>
+            <h2>ID: {item.id}, Title: {item.title}</h2>
+          </div>
+        ))
+      }
+    </div>
+  );
+} -->
+
+
+
+<!-- /////////////////////////////////// USING USECALLBACK SEND DATA FROM CHILD TO PARENT ///////////////////////////////////////// -->
+
+
+<!-- import React ,{useState}from "react";
+import "./style.css";
+
+
+
+const Child=({changeMessage})=>{
+
+  return(
+    <div>
+      <button onClick={()=>changeMessage("byeworld")}>Click</button>
+      </div>
+  )
+}
+
+
+export default function App() {
+
+  const [message,setMessage]=useState("helloworld")
+
+
+  function changeMessage(msg){
+    setMessage(msg)
+  }
+  return (
+    <div>
+        <h2>{message}</h2>
+        <Child changeMessage={changeMessage}/>
+    </div>
+  );
+}
+ -->
+
+
+ ///////////////like purecomponent in class,in function there is React.memo which is used to skip un necsessary rerendering when its props and states havent changed//////////////////////////////
+<!-- 
+ import React from "react";
+import "./style.css";
+
+
+
+const Child=React.memo((props)=>{
+
+  console.log("reactmemo")
+  return(
+    <div>
+  <h4>{props.count}</h4>
+
+    </div>
+  )
+})
+
+
+const GrandChild=React.memo(()=>{
+
+  
+  console.log("grandchild")
+  return(
+    <div>
+      <h2>This is grand child componenet</h2>
+      </div>
+  )
+}
+)
+export default function App() {
+
+  const [count,setCount]=React.useState(0)
+  
+
+  const clickHandler=()=>{
+    setCount(count+1)
+  }
+  return (
+    <div>
+    <h3>Implementation of React Memo</h3>
+    <Child count={count}/>
+    <button onClick={clickHandler}>click</button>
+    <GrandChild/>
+    </div>
+  );
+}
+ -->
+
+
+
+ ///////////////////////////////////// STOPWATCH CODE //////////////////////////////////////////////////////////////////////////////
+ <!-- import React, { useState, useEffect ,useRef} from 'react';
+import './style.css';
+
+const Stopwatch = () => {
+  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState(0);
+  const intervalRef = useRef(null)
+  
+  useEffect(() => {
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalRef.current); // Clear the interval using the ref
+    }
+
+    // Cleanup function
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning]);
+
+  const handleStartStop=()=>{
+    setIsRunning(!isRunning)
+  }
+
+  const handleReset=()=>{
+    setTime(0);
+    setIsRunning(false)
+  }
+  const formatTime=(time)=>{
+    const hours=Math.floor(time/3600);
+    const minutes=Math.floor((time%3600)/60);
+    const seconds=time%60;
+    const formattedHours=String(hours).padStart(2,'0');
+    const formattedMinutes=String(minutes).padStart(2,'0');
+    const formattedSeconds=String(seconds).padStart(2,'0');
+    return `${formattedHours}: ${formattedMinutes}: ${formattedSeconds}`
+  }
+  return (
+    <div>
+      <h2>StopWatch</h2>
+      <div>{formatTime(time)}</div>
+      <button onClick={handleStartStop}>{isRunning ? 'Stop' : 'Start'}</button>
+    <button onClick={handleReset}>Reset</button>
+
+    </div>
+  );
+};
+export default Stopwatch;
+// export default function App() {
+//   return (
+//     <div>
+//       <h1>Hello StackBlitz!</h1>
+//       <p>Start editing to see some magic happen :)</p>
+//     </div>
+//   );
+// } -->
+
+
+
+ //////////////////////// create checkbox when i click it will be checked or unchecked////////////////////////////
+ <!-- import React from "react";
+ import "./style.css";
+ 
+ export default function App() {
+   const [status,setStatus]=React.useState({
+     check1:false,
+     check2:false,
+     check3:false,
+     check4:false
+   })
+ 
+   console.log(status)
+ 
+   return (
+     <div>
+      <div>
+        <input  checked={status.check1 && status.check2 && status.check3 &&status.check4}  onChange={()=>setStatus({ check1:!status.check1,
+     check2:!status.check2,
+     check3:!status.check3,
+     check4:!status.check4})} id="selectall" type="checkbox"/>
+        <label htmlFor="selectall">SelectAll</label>
+      </div>
+      <div>
+        <input  checked={status.check1} onChange={()=>setStatus({...status,check1:!status.check1})}id="check1" type="checkbox"/>
+        <label htmFor="check1">1</label>
+      </div>
+      <div>
+        <input  checked={status.check2}  onChange={()=>setStatus({...status,check2:!status.check2})} id="check2" type="checkbox"/>
+        <label htmFor="check2">2</label>
+      </div>
+      <div>
+        <input  checked={status.check3}  onChange={()=>setStatus({...status,check3:!status.check3})} id="check3" type="checkbox"/>
+        <label htmFor="check3">3</label>
+      </div>
+      <div>
+        <input checked={status.check4}  onChange={()=>setStatus({...status,check4:!status.check4})} id="check4" type="checkbox"/>
+        <label htmFor="check4">4</label>
+      </div>
+     </div>
+   );
+ }
+  -->
+
+
+
+ //////////////// TAKE 2 INPUTS, ONE IS EXPENSIVENAME AND ANOTHER IS CONST , EHEN I CLICK THOSE DATA ENTER INTO TABLE/////////////////////////////////
+
+  <!-- import React,{useState} from "react";
+import "./style.css";
+
+
+const Table=({expensiveDetails})=>{
+
+
+  
+  return(
+    <div>
+    <table border={2}> 
+      <thead>
+        <tr>
+          <th>ExpensiveName</th>
+          <th>cost</th>
+        </tr>
+      </thead>
+      <tbody>{
+        expensiveDetails.map((item,index)=>{
+          return <tr key={index}>
+            <td>{item.expensiveName}</td>
+            <td>{item.cost}</td>
+          </tr>
+        })
+        }
+      </tbody>
+    </table>
+    </div>
+  )
+}
+
+export default function App() {
+  const [expensiveName,setExpensiveName]=useState('');
+  const [cost,setCost]=useState('');
+    const [expensiveDetails,setExpensiveDetails]=useState([]);
+
+  const submitHandler=(e)=>{
+    e.preventDefault()
+console.log(expensiveName,cost)
+setExpensiveDetails([...expensiveDetails,{expensiveName,cost}])
+setExpensiveName('');
+setCost('')
+  }
+
+ return (
+   <div>
+  <form onSubmit={submitHandler}>
+    <div>
+      <input type="text"
+       placeholder="Entet ExpensiveName" value={expensiveName}
+       onChange={(e)=>setExpensiveName(e.target.value)}
+      />
+    </div>
+    <div>
+      <input type="text"
+       placeholder="Entet cost" value={cost}
+       onChange={(e)=>setCost(e.target.value)}
+      />
+    </div>
+    <div>
+      <button>click</button>
+    </div>
+  </form>
+
+     <div>
+       <Table expensiveDetails={expensiveDetails}/>
+     </div>
+   </div>
+ )
+} --> 
+
+
+
+//////////// WHEN I CLICK MODAL BUTTON  IT WANTS TO DISPLAY MODAL COMPONENT DATA /////////////////////////////////////////////////////////
+<!-- import React from "react";
+import "./style.css";
+import  Modal from './Modal'
+export default function App() {
+  const [openModal,setOpenModal]=React.useState(false)
+  return (
+    <div>
+       <h3>This ia Popup Task</h3>
+       <button onClick={()=>setOpenModal(true)}>Modal</button>
+       
+       <Modal openModal={openModal} onDelete={()=>setOpenModal(false)}>
+         This is Modal componenet
+         </Modal>
+    </div>
+  );
+} -->
+<!-- import React from 'react';
+  
+
+export default function Modal({onDelete,openModal,children}){
+  return (
+    <div style={{display:openModal ? "block" : "none"}}>
+{children}
+<button onClick={onDelete}>delete</button>
+
+    </div>
+  )
+} -->
+
+
+////////////////////////////////////////////////  PROGRESS_BAR ////////////////////////////////////////////////////////////////////
+<!-- APP.JSX
+import React,{useState,useEffect} from "react";
+import "./style.css";
+import ProgressBar from './ProgressBar.jsx'
+
+
+export default function App() {
+const [value,setValue]=useState(0);
+  const [running,setRunning]=useState(false)
+
+
+ useEffect(()=>{
+    let id;
+  if(running){
+   id=  setInterval(()=>{
+      setValue((val)=>val+1)
+   },100)
+  }
+  return ()=>clearInterval(id)
+  },[running])
+
+    const clickHandler = () => {
+    setRunning(!running); // Toggle running state
+  };
+
+
+
+  return (
+    <div className='app'>
+      <span>ProgressBar</span>
+      <ProgressBar value={value}/>
+     <button onClick={clickHandler}>click</button>
+
+    </div>
+  );
+}
+
+PROGRESSBAR.JSX 
+
+import React,{useState,useEffect} from 'react';
+
+
+const ProgressBar=({value})=>{
+const [percent,setPercent]=useState(value)
+
+useEffect(()=>{
+  setPercent(Math.min(100,Math.max(value,0)))
+},[value])
+  
+return (
+  <div className='progress'> 
+    <span >{percent}%</span>F
+    <div style={{width:`${percent}%`}}/>
+  </div>
+)
+}
+export default ProgressBar
+
+STYLE.CSS
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.progress {
+  width: 500px;
+  height: 20px;
+  background-color: grey;
+  border-radius: 20px;
+  overflow:hidden;
+}
+.progress span {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:1
+
+}
+.progress div{
+  background-color: green;
+  height:100%;
+} -->
+
+//////////////////////////////////FORM VALIDATIONS ///////////////////////////////////////////////////////////////////////////////////////
+<!-- import React, { useState } from 'react';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+    if (email.trim() === '') {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Invalid email format';
+    }
+    if (password.trim() === '') {
+      errors.password = 'Password is required';
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      errors.password = 'Password must contain at least one uppercase letter';
+    } else if (!/(?=.*[a-z])/.test(password)) {
+      errors.password = 'Password must contain at least one lowercase letter';
+    } else if (!/(?=.*\d)/.test(password)) {
+      errors.password = 'Password must contain at least one number';
+    } else if (password.length < 8) {
+      errors.password = 'Password must be at least 8 characters long';
+    }
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      // Perform form submission logic here
+      console.log('Form submitted:', { email, password });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={handleInputChange}
+        />
+        {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
+        />
+        {errors.password && <span style={{ color: 'red' }}>{errors.password}</span>}
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+
+export default LoginForm; -->

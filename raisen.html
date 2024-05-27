@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+ 
+</head>
+<body>
+     
+
+
+     <script>
+   let arr1 = [{id: 1, title: 'title 1'}, {id: 2, title: 'title 2'}];
+
+let arr2 = [{id: 1, roll: 101}, {id: 2, roll: 102}, {id: 3, roll: 103}];
+
+
+function isPresent(arr,id){
+  for(let i=0;i<arr.length;i++){
+    if(arr[i].id === id) return true
+  }
+  return false;
+}
+
+function mergeArray(a1,a2){
+  let output=[];
+  for(let i=0;i<a1.length;i++){
+      if(!isPresent(output,a1[i].id)) output[output.length]=a1[i]
+  }
+  for(let i=0;i<a2.length;i++){
+    if(!isPresent(output,a2[i].id)) output[output.length]=a2[i]
+
+  }
+  return output;
+}
+console.log(mergeArray(arr1,arr2))
+        </script>
+</body>
+</html>

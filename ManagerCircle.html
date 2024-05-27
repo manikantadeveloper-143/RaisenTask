@@ -1,0 +1,46 @@
+import "./styles.css";
+import { useState } from "react";
+export default function App() {
+  const [circles, setCircle] = useState([]);
+  const [click, setClick] = useState(0);
+  const onClickCircle = (value) => {
+    setClick((click) => click + value);
+  };
+  return (
+    <div className="App">
+      <button onClick={() => setCircle([...circles, circles.length])}>
+        Add circle
+      </button>
+      <h2>Number of Cliked Circles : {click}</h2>
+      <div>
+        {circles.map((circle) => {
+          return <Circle key={circle} onCircleClick={onClickCircle} />;
+        })}
+      </div>
+    </div>
+  );
+}
+
+const Circle = ({ onCircleClick }) => {
+  const [status, setStatus] = useState(false);
+  return (
+    <div
+      style={{
+        width: "100px",
+        margin: "10px",
+        height: "100px",
+        borderRadius: "100%",
+        border: "1px solid black",
+        backgroundColor: status ? "black" : "white"
+      }}
+      onClick={() => {
+        if (status) {
+          onCircleClick(-1);
+        } else {
+          onCircleClick(1);
+        }
+        setStatus((status) => !status);
+      }}
+    ></div>
+  );
+};

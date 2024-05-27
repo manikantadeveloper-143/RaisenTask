@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle{
+           border-radius :60%;
+           position:fixed;
+           border:2px solid black        }
+    </style>
+</head>
+
+<body>
+
+
+   
+ 
+
+    <script>
+
+
+const circleIntersect=[];
+
+function circleInteresct(x0,y0,r0,x1,y1,r1){
+    return Math.hypot(x0-x1,y0-y1) <=r0+r1
+
+}
+function logIntersect(){
+   const firstCircle=circleIntersect[0];
+   const secondCircle=circleIntersect[1];
+   const x1=firstCircle.x;
+   const y1=firstCircle.y;
+   const x2=secondCircle.x;
+   const y2=secondCircle.y;
+   return circleInteresct(x1,y1,50,x2,y2,50)
+}
+
+     document.addEventListener('click',(e)=>{
+
+        let totalCircles=document.querySelectorAll('.circle');
+        if(totalCircles.length == 2){
+            totalCircles.forEach((cir)=>{
+                document.body.removeChild(cir)
+                circleIntersect.shift()
+            })
+           
+        }
+          const x=e.clientX;
+          const y=e.clientY;
+          console.log(x,y);
+          circleIntersect.push({x,y})
+
+          const radius="100px"
+
+         let circle= document.createElement('div');
+         circle.classList.add('circle');
+         circle.style.width=radius;
+         circle.style.height=radius;
+         circle.style.top=y-50  + 'px';
+         circle.style.left=x-50 + 'px';
+         document.body.append(circle)
+
+
+         if(circleIntersect.length === 2){
+         const res=   logIntersect();
+         console.log("intersecting is",  res ) 
+         }
+       
+         
+     })
+
+    </script>
+</body>
+
+</html>

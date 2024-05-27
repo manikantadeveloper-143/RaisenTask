@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script type="module">
+
+    async function foo() {
+       return "hello"
+    }
+
+    let response=await foo();
+    console.log(response) -->
+
+    
+  </script>
+</body>
+</html>
+
+//even prime,totaldupliactes,curryingfn,
+<!-- ///////////// find total missing numbers in an array/////////////////////////////////////////////
+// let arr = [1, 2, 3, 5, 6, 7, 9, 12, 13, 16];
+
+// function findMissingNumbers(arr) {
+//     let max = Math.max(...arr);
+//     let min = Math.min(...arr);
+//     let missingNumbers = [];
+    
+//     for (let i = min + 1; i <= max; i++) {
+//         if (!arr.includes(i)) {
+//             missingNumbers.push(i);
+//         }
+//     }
+    
+//     return missingNumbers;
+// }
+
+// let output = findMissingNumbers(arr);
+// console.log(output); // Output: [4, 8, 10, 11, 14, 15] -->
+<!-- 
+function combine(str1,str2){
+  let result=''
+  for(let i=0;i<Math.max(str1.length,str2.length);i++){
+    if(i< str1.length){
+result+=str1[i]
+    }
+    if(i< str2.length){
+      result+=str2[i]
+          }
+  }
+  return result
+}
+console.log(combine('abcdef','123')) -->
+
+<!-- / const input1={a:1,b:2,c:3,d:10,e:12};
+// const input2={a:1,e:12,f:6,d:10};
+// function findCommonProperties(obj1,obj2){
+//   let commonProperties={};
+//   for(let key in obj1){
+//     if(obj2.hasOwnProperty(key)){
+//       commonProperties[key]=obj1[key]
+//     }
+//   }
+//   return commonProperties
+// }
+// console.log(findCommonProperties(input1,input2))  -->
+
+
+<!-- import React, { useState } from 'react';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+    if (email.trim() === '') {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Invalid email format';
+    }
+    if (password.trim() === '') {
+      errors.password = 'Password is required';
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      errors.password = 'Password must contain at least one uppercase letter';
+    } else if (!/(?=.*[a-z])/.test(password)) {
+      errors.password = 'Password must contain at least one lowercase letter';
+    } else if (!/(?=.*\d)/.test(password)) {
+      errors.password = 'Password must contain at least one number';
+    } else if (password.length < 8) {
+      errors.password = 'Password must be at least 8 characters long';
+    }
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      // Perform form submission logic here
+      console.log('Form submitted:', { email, password });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={handleInputChange}
+        />
+        {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={handleInputChange}
+        />
+        {errors.password && <span style={{ color: 'red' }}>{errors.password}</span>}
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+
+export default LoginForm; -->
+
+
+
+import React,{useState} from "react";
+import "./style.css";
+
+export default function App() {
+
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('')
+
+  const submitHandler=(e)=>{
+ e.preventDefault();
+ console.log({email,password});
+ setEmail('');
+ setPassword('')
+  }
+  return (
+   <form onSubmit={submitHandler}>
+    <div>
+      <label htmlFor="email">E-mail : </label>
+      <input id="email" type="text" placeholder="Enter email" value={email} onChange={({target:{value}})=>setEmail(value)}/>
+    </div>
+    <div>
+      <label htmlFor="pass">Password : </label>
+      <input id="pass" type="password" placeholder="Enter password" value={password} onChange={({target:{value}})=>setPassword(value)}/>
+      <button>click</button>
+</div>
+   </form>
+  );
+}

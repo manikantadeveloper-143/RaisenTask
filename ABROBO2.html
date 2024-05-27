@@ -1,0 +1,522 @@
+ ////// HOW TO DO U USE CUSTOM HOOKS IN INTERCEPTORS /////////////////////////
+
+  =>we can create new Axios instance using "axios.create()" with in useEffect hook.
+  =>define  request and response INTERCEPTORS using axiosInstance.interceptor.request.use and axiosInstance.interceptord.response.use
+
+
+/////// IN React I HAVE 3 SERVICES and I WANT TO CALL THOSE THREE SERVICES AT A SAME TIME HOW CAN WE CALL//////////////////////////////////////
+=>To call multiple services at a same time we can use "Promise.all() along with axios (OR) Fetch Api with Promise.all() (OR) AYNC AWAIT WITH Promise .all() 
+
+=**=Generally in Promise.all 1 service is reject then other will not be called. how can fix this issue
+=>try{
+}
+catch(error){}
+
+///////////////// CORS (CROSS ORIGIN RESOURCE SHARING)///////////////////////////////////
+>=>IT IS A Mechanishm or Protocol that allows devices on One domain to access resorces residing on other domain ,
+   generally , for security reasons, broeser forbids request that comes in from cross domain sources
+
+   HOW CAN WE RESOLVE THIS ISSUE CORS >=>Add the KEY  'Access-Control-Allow-Origin' header to the server response. ..
+
+////////////////////////// FORWARD REFS/////////////////////////////////////////////////////////////////////
+=> It is an Advanced technique which is used to pass a ref from parent to child component and allowing parent can access child dom elements directly
+
+
+/////////////////////////// RENDER PROPS////////////////////////
+=>components recieve a fn as a prop allowing them to render content dynamically
+
+//////////////////////// CHILDREN PROPS ////////////////////////////////
+>=> It is a special prop that allows components to pass Children elements between opening ans closing tag of components
+<Child>Thius is Child component</Child>
+
+
+////////////////////////////  REACT MICRO FONT //////////////////////////
+=>IT is a Modular Architectural approach  where large scale applications build  by combining small components 
+
+///////////////////////////////  MICRO-SERVICES //////////////////////////////////////////////////////
+
+Microservices: An architectural approach to developing applications as a collection of small, independently deployable services, 
+each responsible for specific functionalities and communicating with each other through APIs.
+
+>=>Microservices: An architectural pattern for developing backend systems as a collection of small, independently deployable services, 
+each responsible for a specific business function.
+
+Micro Frontend: An architectural pattern for developing frontend applications 
+as a collection of small, independently deployable components, each responsible for a specific user interface feature or functionality
+
+
+//////////////////////////// HTTP METHODS ////////////////////////////////////////////////////////////////////////////////////////////////
+GET: Retrieve data from a specified resource.
+POST: Submit data to be processed to a specified resource.
+PUT: Update a specified resource with the provided data.  // UPDATES ENTIRE RESOURCE
+PATCH: Update partial data of a specified resource.   //PARTIAL DATA IS UPDATED WITH OUT MODIFYING ENTIRE DATA
+DELETE: Delete a specified resource.
+
+
+
+///////////  What is maximum amunt of data we can store inb storage =>b/w 5-10 mb of data in l.s &s.s per origin/////
+
+//////////////////////////////////////////// WHAT IS WEB ACCESSABILITY////////// /////////////////////////////////////
+=> It is the principle of designing and developing websites and digital content to be usable by people with disabilities. 
+
+////////////////////////////////////  HTML-5 APIS//////////////////////////////
+=>Geolocation , local and session storage, webworkers , drop and drag , sse
+
+  f//////////////  which is better place to add script tag either in head or body tag  in html //////////////////////////////////////////
+>=>In general, it's better to place the script tag at the end of the <body> tag in HTML
+   to ensure that the HTML content is loaded before executing JavaScript.
+>=>because we dont know what is wriitem inside script tag like if it Accessing dom elements and if we put inside the head tag Dom element wont be available 
+
+//////////// we can only  put script tag in head tag and code is Accessing dom elements using DEFER and ASYNC ATTRIBITES/////////////////
+
+>=> DEFER =>The script will be downloaded in parallel with other resources in the document,but it will only execute after the HTML content is parsed. 
+    Multiple deferred scripts will execute in the order they appear in the document.
+
+>=> ASYNC=> The script will be downloaded in parallel with other resources in the document, 
+   and it will execute as soon as it's downloaded, even if the HTML content is not fully parsed yet. 
+   Multiple async scripts may execute in any order once downloaded, which can lead to unpredictable behavior if they depend on each other.
+
+
+ /////////////////////////////////////// GO TO HTML BOOK FOR INLINE ELEMENTS NOTES /////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////// what is SERVER SIDE RENDERING ////////////////////////////
+=>It is a technique used in web development where web pages are generated dynamically on the serverand send them to client as fully Html documents
+ ///////////////////////////////////////////  WHAT IS CLIENT SIDE RENDERING///////////////////////////////
+=>It is a technique used in web development where web pages are generated on the client and sent to the server.
+
+//////////////  when there is parent-child realtionship in react,in that case how event.stop propagation works short answer ////////////////
+In a parent-child relationship in React, event.stopPropagation() can be used to prevent an event from bubbling up the DOM tree from the child component to its parent component. 
+This means that when an event occurs on a child element, invoking event.stopPropagation() prevents that event from triggering any event listeners on the parent elements,
+ effectively stopping its propagation upwards in the DOM tree
+
+ //////////////////////////////////////// CALL BACK QUEUE //////////////////////////////////////////////////////////////////////
+ The Callback queue is a data structure that operates on the FIFO (first-in-first-out) principle.
+
+Callback functions that need to be asynchronously executed, are pushed onto the callback queue.
+
+These are later pushed to the Call stack to be executed (when the event loop finds an empty call stack).
+
+
+/////////////////////// CALLBACK HELL/////////////////////////////
+=>. It is the nesting of multiple Callbacks inside a function.
+Callback hell is a phenomenon where a Callback is called inside another Callback
+Thus the Callback hell is also referred to as the 'Pyramid of Doom'
+
+
+//////////////////////////////////////////////// PRPOGATION////////////////////////////////////////////////////////////////////////////
+Event Capturing (Capture Phase): Events are first captured from the outermost ancestor down to the target element.
+
+Event Bubbling (Bubbling Phase): After the event reaches the target element, it bubbles up from the target element to the outermost ancestor.
+
+[[>==>how do u change the phase of event bubbling to capturing]]?
+
+>=>To change the phase of event propagation from bubbling to capturing in JavaScript,you can use the addEventListener method with the third parameter set to true.
+  By default, the third parameter is false, which means the event listener is registered for the bubbling phase. When set to true, the event listener will be registered for the capturing phase. Here's how you can do it:
+
+////////////////////////////////////// COMPONENET COMPOSITION ////////////////////////////////////////////////////////////////////
+
+Component Composition refers to the process of combining smaller, reusable components together to create larger, more complex components
+
+
+//////////////////////////when we create a form, and if u want to validate the form ,is there any seperate mecganish, in react/////////////\///////////////
+Controlled Components with State: In React, you can create controlled components where form inputs are tied to state values. You can then implement validation logic within the component's state management functions (e.g., onChange). This allows you to validate user input in real-time as they type.
+
+Formik: Formik is a popular library in the React ecosystem specifically designed to handle forms and form validation. It provides a straightforward way to manage form state, handle form submission, and perform validation with ease.
+
+React Hook Form: Another library commonly used for form management and validation in React is React Hook Form. It utilizes React hooks to manage form state and validation, providing a simple and performant solution.
+
+
+////////////////////////////////// HOW CAN WE HANDLE NESTED FORMS ////////////////////////////////////////////////////////////////
+>=>Handle nested forms in React by managing the state and event handling in the parent component 
+and passing down necessary data and event handlers as props to child components
+
+console.log(1+null) // 1
+console.log('1'+null) // '1null'
+console.log(1*null) // 0
+console.log(1/null) //Infinity
+
+[]==[] //false  In both cases, the comparison will result in false because you're comparing two distinct arrays, and
+[]===[]  //false       JavaScript compares arrays by reference, not by their content
+[] + [] ='';
+{}+{}=NAN
+console.log('2'+3 *4) //212
+console.log('A'-'B'+2)  //NaN
+
+NaN == NaN //FALSE
+NaN ===NaN //False
+
+NaN ==undefined //false
+NaN ===undefined //false
+null == NaN //false
+null === NaN //false
+null ==  undefined //true
+null === undefined //false
+
+console.log(0.1+0.2 == 0.3) //false
+
+console.log(0016) //14
+
+console.log(1+undefined) // NAN
+console.log('1'+undefined) // '1undefined'
+console.log(1*undefined) // NAN
+console.log([1,2,3]+4 + [5,6]+'a') // '1,2,345,6a'
+
+
+
+console.log(8+'5')     //85
+console.log('5'+8)      //58
+console.log('8'-5)      //3
+console.log('5'-8)      //-3
+console.log('1'- -'1') //2
+console.log('1'+ +'1')   //11
+console.log('1'- + '1')   //0
+console.log('1'+ - '1') //1-1
+
+
+
+
+///////////////////////////////////////////////// WHAT IS HTTP REQUEST ////////////////////////////////////////
+>=>An HTTP request is a message sent by a client (such as a web browser) to a server, specifying the action to be performed, along with any required data,
+
+
+
+/////////////////////////////////////////////////////////////// GENERATOR FUNCTION ////////////////////////////////////////////////////////////////
+
+>=> A generator function in JavaScript is a special type of function that can be paused and resumed during its execution
+function* generatorFunction() {
+  yield 1;
+  yield 2;           //yield is used to pause the execution of the generator and return a value to the caller.
+  yield 3;
+}
+
+const generator = generatorFunction();
+
+console.log(generator.next().value); // Output: 1   Each call to generator.next() resumes the execution of the generator from where it was last paused and returns an object with two properties: 
+console.log(generator.next().value); // Output: 2
+console.log(generator.next().value); // Output: 3
+console.log(generator.next().value); // Output: undefined
+
+//////////////////////////////////////////////////////Function using async without await/////////////////////////////////////////////////////////////////
+async function asyncFunctionWithoutAwait() {
+  console.log('Async function without await');
+  return 'Hello';
+}
+
+const resultWithoutAwait = asyncFunctionWithoutAwait();
+console.log('After calling async function without await');
+console.log('Result:', resultWithoutAwait);
+
+>=>In this case, when the async function asyncFunctionWithoutAwait is called,
+ it immediately returns a promise that resolves to the string 'Hello'
+
+//////////////////////////////////////////////////////Function using async and await/////////////////////////////////////////////////////////////////////////////////////
+async function asyncFunctionWithAwait() {
+  console.log('Async function with await');
+  return await new Promise(resolve => {
+    setTimeout(() => resolve('World'), 2000);
+  });
+}
+
+async function runAsyncFunction() {
+  console.log('Before calling async function with await');
+  const result = await asyncFunctionWithAwait();
+  console.log('After calling async function with await');
+  console.log('Result:', result);
+}
+
+runAsyncFunction();
+
+>=>In this case, the async function asyncFunctionWithAwait contains an await keyword,
+ which pauses the execution of the function until the promise returned by new Promise resolves. 
+ This causes the function to wait for 2 seconds before resolving with the string 'World'
+
+
+/////////////////////////////////////  DEFINATION OF MAP IN JAVASCRIPT //////////////////////////////////////////////////////////////////////////////
+
+In JavaScript, the Map object is a collection of key-value pairs where keys can be of any data type,and values can also be of any data
+ type. It allows for efficient insertion, deletion, and retrieval of elements based on their keys. Here's how you can use Map:
+
+
+
+ <!-- // Creating an empty Map
+ const myMap = new Map();
+ 
+ // Creating a Map with initial key-value pairs
+ const myMapWithValues = new Map([
+   ['key1', 'value1'],
+   ['key2', 'value2']
+ ]);
+ // Adding elements to the Map
+ myMap.set('name', 'John');
+ myMap.set(1, 'One');
+ 
+ // Accessing elements using get() method
+ console.log(myMap.get('name')); // Output: John
+ console.log(myMap.get(1));      // Output: One
+ // Checking if a key exists in the Map
+ console.log(myMap.has('name')); // Output: true
+ console.log(myMap.has('age'));  // Output: false -->
+
+
+
+ ///////////////////////////////////////////////////// SET//////////////////////////////////////
+ <!-- let s1=new Set();
+s1.add(10);
+console.log(s1)
+
+s1.add(20);
+s1.add(30);
+s1.add(30);
+s1.add(40);
+
+console.log(s1.size); // Output: 3
+
+// Checking existence of an element
+console.log(s1.has(2)); // Output: true
+
+// Deleting an element
+s1.delete(20);
+
+// Iterating over elements
+s1.forEach(item => console.log(item)); // Output: 1 2
+
+-->
+
+
+////////////////////////////////////// INTERSECTION  ONSERVER ////////////////////////////////////////////////////////////
+>=>Intersection observer is an Javscript API that allows asynchronously observe changes in the Intersection of a atarget Element with an
+Ancestor element,enabling efficient detection of when an element enters or exitsthe view port 
+
+<style>
+  body{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .card{
+ width:100px;
+ border:2px solid black;
+ height:30px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ opacity:0
+
+  }
+  .show{
+    opacity:1
+  }
+</style>
+</head>
+<body>
+<div class="card show">Some Text</div>
+<div class="card">Some Text</div>
+<div class="card">Some Text</div>
+<div class="card">Some Text</div>  /// write sam div as 25
+
+
+<script src="index.js"></script>
+
+//// infdex.js
+
+const cards=document.querySelectorAll('.card');
+
+const Observer=new IntersectionObserver(obj=>{
+
+  console.log(obj) 
+  obj.forEach((item)=>{
+    item.target.classList.toggle('show',item.isIntersecting)
+  })
+  
+},{threshold:0})
+
+cards.forEach((card)=>{
+  Observer.observe(card)
+})
+
+
+ ///////////////////////////////// HOW CAN WE ITERATE OBJECTS ////////////////////////////////////////////////////////
+
+ <!-- => FOR IN ,Object.keys() , Object.entrie()
+  
+ for (let key in obj) {                        Object.keys(obj).forEach(key=>{
+                                                                  console.log(key , ":",obj[key])                            
+  console.log(key ,":",obj[key])                        
+  // console.log(`${key}: ${obj[key]}`);             })
+} -->
+
+///////////  calculate length of object/////////////
+<!-- const object = {
+  a: 'somestring',
+  b: 42,
+  c: false
+};
+
+const length = Object.keys(object).length;
+
+console.log(length); // Output: 3 -->
+
+=>const object we can modify but not reassign in Non-pritive bu not primitive data type
+
+////////////////// WE CANT MODIFY WHEN WE USE FREEZE BUT MODIFY WHEN WE USE SEAL//////////////////
+
+<!-- const box={x:10,y:20};
+
+Object.freeze(box)
+const shape=box;
+shape.x=100;
+console.log(shape) -->
+
+
+ ////////////////////////////////////////////////////  JSON WEB TOKEN (JWT) //////////////////////////////////////////////////////
+ =>JWT is a compact, URL-safe means of representing claims between two parties
+
+>=>JWTs are commonly used for authentication and authorization in web applications. 
+When a user logs in, the server creates a JWT containing the user's information (claims), such as their user ID and role. 
+This JWT is then sent to the client, typically stored in local storage or a cookie.\
+
+>=>JWTs consist of three parts separated by dots:
+
+Header: Contains metadata about the type of token and the hashing algorithm used to sign the token.
+Payload : Contains the claims (user information, expiration time, etc.) encoded as a JSON object.
+Signature: The header and pay load are encoded using Base64url and concatenated with a dot.
+ Then, this string is hashed using the specified algorithm and a secret key to create the signature.
+  This signature is used to verify that the token has not been tampered with.
+
+
+  //////////////////////////////// DIFFERENCE BETWEEN DOM AND BOM //////////////////////////////////////////////////////////////////////////
+>=>DOM (Document Object Model):
+
+(A))Represents the document (HTML or XML) as a tree structure of objects.
+(B))Allows JavaScript to access and manipulate the structure and content of the document.
+(C))Provides methods and properties for interacting with elements, attributes, and text nodes in the document.
+(D)Examples of DOM operations include adding or removing elements, changing element styles, and handling events.
+
+BOM (Browser Object Model):
+
+(A)Represents the browser itself and its environment, rather than the content of the web page.
+(B)Provides objects and methods for interacting with the browser window, frames, history, location, and more.
+(C)Allows JavaScript to control browser behavior, such as opening new windows or tabs, navigating history, and detecting the user's browser and operating system.
+(D)Examples of BOM operations include opening new windows with window.open(), redirecting to a new URL with window.location, and accessing browser history with window.history.
+
+
+//////////////////////////////////////////////  CSS SPRITE //////////////////////////////////////////////////////////////////////////////////////
+>=> CSS sprites are a technique used in web development to combine multiple images into a single image file, called a sprite sheet.
+    By doing so, you can reduce the number of server requests required to load individual images, which can improve website performance.
+
+
+//////////////////////////////////////////////            HOW BROSWER UNDERSTAND JSX            /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+>=>Browser wont UNDERSTAND jsx,By using BABEL(Complier) transfers jsx to js (present version to previous versions)
+
+//////////////////////////////////////////  HOW DOES BROSWER UNDERSTAND JS CODE ////////////////////////////////////////////////////////////
+>=>Browsers understand JavaScript code by parsing it into a data structure called the Abstract Syntax Tree (AST),
+ followed by compilation and execution. and interpreting it using their built-in JavaScript engines, 
+such as V8 in Chrome, SpiderMonkey in Firefox, and JavaScriptCore in Safari.
+
+///////////////////////////////// WHAT IS THE USE OF DANGEROUSLYSETINNERHTML IN REACT //////////////////////////////////////////////////////////////////
+>=>The dangerouslySetInnerHTML attribute in React is used to insert HTML directly into a component,
+    allowing you to render raw HTML content obtained from untrusted sources.
+    but you should use it with caution as it can expose your application to XSS (cross-site scripting) attacks.
+
+    <!-- import React from 'react';
+
+function MyComponent() {
+  const htmlContent = '<p>This is <strong>HTML</strong> content.</p>';
+
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
+  );
+}
+
+export default MyComponent; -->
+
+//////////////////////////////////// WHAT HAPPENS IF SETSTATE METHOD IS USED INSIDE RENDOR METHOD //////////////////////////////////////////////////////////////////////
+
+>=>If setState is used inside the render method, it will cause an infinite loop of rendering, leading to a stack overflow error.
+
+
+///////////////////////WHAT HAPPENS IF WE UPDATE THE STATE DIRECTLY ///////////////////////////////////////////////////////////////////////
+
+>=>Updating the state directly can lead to inconsistencies in the UI as React won't trigger a re-render
+
+
+/////////////////////////////Whats the need of setstate to be asynchronous ////////////////////////////////////////////////////////////////////
+>=>The need for setState to be asynchronous in React is to batch multiple state updates together for performance optimization 
+and to ensure consistency in the component's rendering.
+
+
+////////////////////////////  Before es6 how could be build a prototypal inheritance?? //////////////////////////////////////////////////////
+
+>=>(A) Create Constructor Functions , (B)Define Methods on the Prototype 
+   (C)Set up Inheritance: Use the prototype property to set up inheritance between objects. 
+   (D)Instantiate Objects: Create instances of objects using the new keyword.
+
+
+///////////////////WHAT IS UNIDIRECTIONAL FLOW IN REACT JS INSINGLE LINE ANSWER ///////////////////////////////////////////////////////////////////////////////
+
+>=>In React, unidirectional flow refers to the concept where data flows downward from parent components to child components, 
+     facilitating predictable data management and rendering.
+
+//////////////////////// WHAT IS THE USE OF PRECONNECT IN CSS//////////////////////////////////////////////////////////////////////////////
+>=> preconnect value in css is relationship attribute in Link Tag which is used to establish early connections to third party origins,
+improving page load performance
+
+<link rel="preconnect" href="https://example.com">
+
+
+
+ ///////////////////////////////////////////////////// WHAT ARE MIXINS  //////////////////////////////////////////////////////////////////
+ >=>Mixins are a feature in CSS preprocessors like Sass and Mixins are reusable blocks of CSS code that can be included in other selectors,
+  allowing you to apply common styles across multiple elements without repeating the same CSS rules.
+
+<!-- 
+  @mixin button-styles {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button {
+    @include button-styles;
+  }
+  
+  .btn-primary {
+    @include button-styles;
+  }
+   -->
+
+  
+
+
+
+   ////////////////////When a response is sent from server to browser what gets loaded first either js or css in html/////////////////
+
+   >=>In HTML, the browser typically loads CSS files before JavaScript files.
+    This is because CSS files are crucial for rendering the initial layout and styling of the webpage,
+     while JavaScript files are often used to add interactivity and functionality after the initial rendering.
+
+
+     //////////////////////////////////// WEB VITALS///////////////////////////////////////////////////////////////////////////////////
+
+     >=> SET of essential metrices that are related to user Experience of web.These Metrices help Developers and site Owners undersatand and
+      measures aspects of web persormance such as LOADING SPEED ,RESPONSIVENESS OF WEB PAGE ,VISUAL STABILITY OF WEB PAGE.
+
+      >=>THER ARE THREE (3) CORE WEB VITALS SUCH AS
+      (1) LARGEST CONTENTFUL PAINT(LCP)=>THIS metric measures the loading performance of web page.
+      (2) FIRST INPUT DELAY (FID) =>   THIS metric measures the Responsiveness of web page.
+      (3)CUMMULATIVE LAYOUT SHIFT (CLS) =>THIS metric measures the vISUAL STABILITY OF WEB PAGE 
+
+
+
+
+
+
+
+
